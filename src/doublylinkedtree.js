@@ -1,6 +1,6 @@
 import TreeNode from './treenode.js';
 
-export default class DoublyLinkedList {
+export default class DoublyLinkedTree {
     constructor () {
         this.head = null
         this.end = null
