@@ -1,5 +1,5 @@
 import './style.css';
-// import makeSidebar from "./makesidebar.js";
+import makeSidebar from "./makesidebar.js";
 
 
 const component = () => {
@@ -13,4 +13,4 @@ const component = () => {
 document.body.appendChild(component());
 
 
-// makeSidebar(document.body)
+makeSidebar(document.body)
