@@ -1,10 +1,14 @@
 const makeSidebar = (parentDiv) => {
     const sidebar = document.createElement('div')
+    sidebar.classList.add('w-400')
+    sidebar.classList.add('h-full')
 
     const top = document.createElement('div')
     const newTodobutton = document.createElement('button')
     newTodobutton.textContent = "New Todo"
+    newTodobutton.classList.add('text-blue')
     const minMaxbutton = document.createElement('button')
+    minMaxbutton.textContent = "Expand / Minimize"
     top.appendChild(newTodobutton)
     top.appendChild(minMaxbutton)
 
@@ -16,6 +20,7 @@ const makeSidebar = (parentDiv) => {
 
     const bottom = document.createElement('div')
     const profilebutton = document.createElement('button')
+    profilebutton.textContent = "Profile"
     bottom.appendChild(profilebutton)
 
     sidebar.appendChild(top)
