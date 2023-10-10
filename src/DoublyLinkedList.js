@@ -1,13 +1,14 @@
-import TreeNode from "./treenode.js";
+/* eslint-disable no-underscore-dangle */
+import Node from "./ListNode";
 
-export default class DoublyLinkedTree {
-  constructor() {
-    this.head = null;
-    this.end = null;
+export default class DoublyLinkedList {
+  constructor(node) {
+    this.head = node;
+    this.end = node;
   }
 
   insertEnd(value) {
-    let node = new TreeNode(value);
+    const node = new Node(value);
     if (this.head === null) {
       this.head = node;
       this.end = node;
@@ -18,14 +19,14 @@ export default class DoublyLinkedTree {
     this.end = this.end.next;
   }
 
-  deletenode() {
+  deleteEnd() {
     if (this.head === null) {
       throw new Error("Linked List in empty");
     }
     if (this.head.next === null) {
       this.head = null;
       this.end = null;
-      return;
+      
     } else {
       this.end = this.end.previous;
       this.end.next = null;

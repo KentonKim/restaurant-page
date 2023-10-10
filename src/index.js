@@ -1,6 +1,9 @@
 import "./style.css";
 import makeSidebar from "./makesidebar";
 import makeMain from "./makemain";
+import TodoTask from "./TodoTask";
+import DoublyLinkedList from "./DoublyLinkedList";
+import Node from "./ListNode";
 
 makeSidebar(document.body);
 makeMain(document.body);
@@ -26,3 +29,12 @@ hideSidebarButton.onclick = () => {
     showSidebarButton.classList.remove("opacity-0");
   }, 100);
 };
+
+const node = new Node('value in tree node')
+const treenode = new DoublyLinkedList(node)
+const todo = new TodoTask('go to gym', treenode)
+setTimeout(() => {
+    const todo2 = new TodoTask('eat a pig', treenode)
+    console.log(todo2.date.getTime())
+}, 10000);
+console.log(todo.date.getTime())
