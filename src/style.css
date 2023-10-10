@@ -5,9 +5,11 @@
 @import "./skeleton.css";
 
 * {
-    border: 1px solid red;
+  border: 1px solid red;
+  background-color: antiquewhite;
 }
 
-:root, body {
-    height: 100%;
+:root,
+body {
+  height: 100%;
 }
