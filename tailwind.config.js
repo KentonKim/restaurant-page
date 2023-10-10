@@ -6,7 +6,11 @@ module.exports = {
   // purge: ['./dist/*.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      width: {
+        '400' : '400px',
+      }
+    },
   },
   variants: {
   extend: {},
