@@ -1,6 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-import Node from "./ListNode";
-
 export default class DoublyLinkedList {
   constructor(node) {
     this.head = node;
@@ -21,7 +18,7 @@ export default class DoublyLinkedList {
 
   deleteEnd() {
     if (this.head === null) {
-      throw new Error("Linked List in empty");
+      throw new Error("Linked List is empty");
     }
     if (this.head.next === null) {
       this.head = null;

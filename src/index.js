@@ -1,9 +1,9 @@
 import "./style.css";
 import makeSidebar from "./makesidebar";
 import makeMain from "./makemain";
-import TodoTask from "./TodoTask";
+import TodoTask from "./TaskNode";
 import DoublyLinkedList from "./DoublyLinkedList";
-import Node from "./ListNode";
+import Node from "./Node";
 
 makeSidebar(document.body);
 makeMain(document.body);
