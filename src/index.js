@@ -1,7 +1,7 @@
 import "./style.css";
 import makeSidebar from "./makesidebar";
 import makeMain from "./makemain";
-import TaskLRUCache from "./TaskLRUCache";
+// import TaskLRUCache from "./TaskLRUCache";
 
 makeSidebar(document.body);
 makeMain(document.body);
@@ -27,11 +27,3 @@ hideSidebarButton.onclick = () => {
     showSidebarButton.classList.remove("opacity-0");
   }, 100);
 };
-
-const testLRU = new TaskLRUCache();
-for (let i = 0; i< 10; i+= 1) {
-  testLRU.insert(`key${i}`,i);
-}
-testLRU.update('key3')
-testLRU.update('key7')
-console.log(testLRU);

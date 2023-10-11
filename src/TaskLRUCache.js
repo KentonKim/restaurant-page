@@ -1,10 +1,11 @@
+/* eslint-disable no-underscore-dangle */
 import TaskNode from "./TaskNode";
 
 export default class TaskLRUCache {
   constructor() {
     this.head = new TaskNode();
     this.end = new TaskNode();
-    this.hash = {};
+    this._hash = {};
     this.head.nextCreated = this.end;
     this.head.nextModified = this.end;
     this.end.previousCreated = this.head;
@@ -14,7 +15,7 @@ export default class TaskLRUCache {
   // Method to add
   insert(key,value) {
     const newNode = new TaskNode( key, value);
-    this.hash[key] = newNode;
+    this._hash[key] = newNode;
     newNode.nextCreated = this.head.nextCreated;
     newNode.nextModified = this.head.nextModified;
     newNode.previousCreated = this.head;
@@ -26,18 +27,24 @@ export default class TaskLRUCache {
   }
 
   // Method to delete specific
-  delete(key) {
-    const node = this.hash[key];
+  removeNode(key) {
+    if (!(key in this._hash)) {
+      throw new Error('Key is not in Task List');
+    }
+    const node = this._hash[key];
     node.previousCreated.nextCreated = node.nextCreated;
     node.previousModified.nextModified = node.nextModified;
     node.nextModified.previousCreated = node.previousModified;
     node.nextModified.previousModified = node.previousModified;
-    this.hash.delete(key);
+    delete this._hash[key];
   }
 
   // Method to update last modified
   update(key) { 
-    const node = this.hash[key];
+    if (!(key in this._hash)) {
+      throw new Error('Key is not in Task List');
+    }
+    const node = this._hash[key];
     node.previousModified.nextModified = node.nextModified;
     node.nextModified.previousModified = node.previousModified;
     node.previousModified = this.head;
