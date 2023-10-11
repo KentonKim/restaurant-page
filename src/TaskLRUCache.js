@@ -13,7 +13,7 @@ export default class TaskLRUCache {
   }
 
   // Method to add
-  insert(key,value) {
+  insertNode(key,value) {
     const newNode = new TaskNode(key, value);
     this._hash[key] = newNode;
     newNode.nextCreated = this.head.nextCreated;
@@ -34,13 +34,13 @@ export default class TaskLRUCache {
     const node = this._hash[key];
     node.previousCreated.nextCreated = node.nextCreated;
     node.previousModified.nextModified = node.nextModified;
-    node.nextModified.previousCreated = node.previousModified;
+    node.nextCreated.previousCreated = node.previousCreated;
     node.nextModified.previousModified = node.previousModified;
     delete this._hash[key];
   }
 
   // Method to update last modified
-  update(key) { 
+  updateNode(key) { 
     if (!(key in this._hash)) {
       throw new Error('Key is not in Task List');
     }

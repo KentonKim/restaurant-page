@@ -1,7 +1,9 @@
 import "./style.css";
 import makeSidebar from "./makesidebar";
 import makeMain from "./makemain";
-// import TaskLRUCache from "./TaskLRUCache";
+import SidebarProcessor from "./sidebarProcessor";
+import * as sidebarDomModule from "./sidebarDomModule";
+import TaskLRUCache from "./TaskLRUCache";
 
 makeSidebar(document.body);
 makeMain(document.body);
@@ -27,3 +29,14 @@ hideSidebarButton.onclick = () => {
     showSidebarButton.classList.remove("opacity-0");
   }, 100);
 };
+
+const taskListContainer = document.getElementById('task-list-container');
+const taskLRUCache = new TaskLRUCache()
+const sidebarProcessor = new SidebarProcessor(taskLRUCache, taskListContainer, sidebarDomModule);
+console.log('hi');
+sidebarProcessor.add('title1',1)
+sidebarProcessor.add('title2',2)
+sidebarProcessor.select('title1',1)
+sidebarProcessor.add('title3',3)
+sidebarProcessor.remove('title2')
+console.log(taskLRUCache.head);
