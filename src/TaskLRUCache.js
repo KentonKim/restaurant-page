@@ -14,7 +14,7 @@ export default class TaskLRUCache {
 
   // Method to add
   insert(key,value) {
-    const newNode = new TaskNode( key, value);
+    const newNode = new TaskNode(key, value);
     this._hash[key] = newNode;
     newNode.nextCreated = this.head.nextCreated;
     newNode.nextModified = this.head.nextModified;
