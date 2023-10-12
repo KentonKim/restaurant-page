@@ -1,9 +1,19 @@
 export const addTask = (parentDiv, title) => {
-    const button = document.createElement('button');
-    button.textContent = title;
-    button.className = 'overflow-hidden text-ellipsis w-full h-20 px-5'
-    parentDiv.appendChild(button);
-    return button;
+    const element = document.createElement('div');
+    element.textContent = title;
+    element.className = 'overflow-hidden text-ellipsis w-full h-20 p-5 flex items-center cursor-pointer task-div'
+    // const editButton = document.createElement('button')
+    // editButton.textContent = 'tmp edit'
+    // const trashButton = document.createElement('button')
+    // trashButton.textContent = 'tmp trash'
+    // const editImg = document.createElement('img')
+    // const trashImg = document.createElement('img')
+    // trashButton.appendChild(trashImg)
+    // editButton.appendChild(editImg)
+    // element.appendChild(trashButton)
+    // element.appendChild(editButton)
+    parentDiv.prepend(element);
+    return element;
 };
 
 export const selectTask = (oldDiv, newDiv) => {

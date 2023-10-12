@@ -7,9 +7,59 @@
 * {
   border: 1px solid red;
   background-color: antiquewhite;
+  --scrollbar: #d6dee1;
+  --scrollbar-hover: #a8bbbf;
 }
 
 :root,
 body {
   height: 100%;
+}
+
+#task-list-container {
+  scrollbar-gutter: stable;
+}
+
+#task-list-container::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  transition: background-color 1s ease-in-out;
+}
+
+#sidebar-div:hover > #task-list-container::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar);
+  border-radius: 20px;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-hover);
+}
+
+/* Animation for adding task to sidebar  */
+#task-list-container > .task-div {
+  animation: show 600ms 100ms cubic-bezier(0.38, 0.97, 0.56, 0.76) forwards;
+   /* Prestate */
+  opacity: 0;
+   /* remove transform for just a fade-in */
+  transform: rotateY(-90deg);
+  transform-origin: left;
+}
+
+@keyframes show {
+  100% {
+    opacity: 1;
+    transform: none;
+  }
 }

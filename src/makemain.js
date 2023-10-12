@@ -4,12 +4,13 @@ const makeMain = (parentDiv) => {
   main.className = "ml-96 h-full flex justify-center items-center transition-all";
   const newTaskForm = document.createElement('form')
   newTaskForm.id = "new-Task-Form"
-  newTaskForm.className = 'flex' 
+  newTaskForm.className = 'flex w-200' 
   const newTaskInput = document.createElement('input')
   newTaskInput.placeholder = "Type task here..."
   newTaskInput.id = "new-Task-Input"
   newTaskInput.name = "newTaskInput"
-  newTaskInput.className = 'flex-1'
+  newTaskInput.className = 'pl-5 flex-1'
+  newTaskInput.setAttribute( "autocomplete", "off" ); 
   const newTaskButton = document.createElement('button')
   newTaskButton.textContent = 'Submit'
   newTaskButton.id = 'new-Task-Button'
