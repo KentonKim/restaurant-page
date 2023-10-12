@@ -4,6 +4,7 @@ import makeMain from "./makemain";
 import SidebarProcessor from "./sidebarProcessor";
 import * as sidebarDomModule from "./sidebarDomModule";
 import TaskLRUCache from "./TaskLRUCache";
+import * as todoText from "./getTodoTitle";
 
 makeSidebar(document.body);
 makeMain(document.body);
@@ -12,6 +13,13 @@ const showSidebarButton = document.getElementById("show-sidebar-button");
 const hideSidebarButton = document.getElementById("hide-sidebar-button");
 const sidebar = document.getElementById("sidebar-div");
 const mainDiv = document.getElementById("main-div");
+const addTaskInputId = 'new-Task-Input';
+const addTaskButtonId = 'new-Task-Button';
+const addTaskButton = document.getElementById(addTaskButtonId);
+
+const taskListContainer = document.getElementById('task-list-container');
+const taskLRUCache = new TaskLRUCache()
+const sidebarProcessor = new SidebarProcessor(taskLRUCache, taskListContainer, sidebarDomModule);
 
 showSidebarButton.onclick = () => {
   sidebar.classList.add("w-96");
@@ -30,13 +38,13 @@ hideSidebarButton.onclick = () => {
   }, 100);
 };
 
-const taskListContainer = document.getElementById('task-list-container');
-const taskLRUCache = new TaskLRUCache()
-const sidebarProcessor = new SidebarProcessor(taskLRUCache, taskListContainer, sidebarDomModule);
-console.log('hi');
-sidebarProcessor.add('title1',1)
-sidebarProcessor.add('title2',2)
-sidebarProcessor.select('title1',1)
-sidebarProcessor.add('title3',3)
-sidebarProcessor.remove('title2')
-console.log(taskLRUCache.head);
+addTaskButton.onclick = () => {
+  event.preventDefault();
+  if (!todoText.isEmptyText(addTaskInputId)) {
+    const titleTask = todoText.getText(addTaskInputId);
+    sidebarProcessor.add(titleTask, null)
+    todoText.clearText(addTaskInputId)
+  }
+};
+
+

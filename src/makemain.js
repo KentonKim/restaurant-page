@@ -1,7 +1,7 @@
 const makeMain = (parentDiv) => {
   const main = document.createElement("div");
   main.id = "main-div";
-  main.className = "ml-96 h-full flex justify-center items-center";
+  main.className = "ml-96 h-full flex justify-center items-center transition-all";
   const newTaskForm = document.createElement('form')
   newTaskForm.id = "new-Task-Form"
   newTaskForm.className = 'flex' 
@@ -14,7 +14,7 @@ const makeMain = (parentDiv) => {
   newTaskButton.textContent = 'Submit'
   newTaskButton.id = 'new-Task-Button'
   newTaskButton.className = 'w-20 h-20'
-  const showSidebarButton = document.createElement("button");
+  const showSidebarButton = document.createElement("button")
   showSidebarButton.textContent = "Max";
   showSidebarButton.id = "show-sidebar-button";
   showSidebarButton.className = "absolute top-0 left-0 w-20 h-20 hidden opacity-0 transition-opacity ease-in";

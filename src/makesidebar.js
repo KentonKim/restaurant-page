@@ -5,7 +5,7 @@ const makeSidebar = (parentDiv) => {
   const top = document.createElement("div");
   top.className = "flex-none flex";
   const middle = document.createElement("div");
-  middle.className = "flex-1";
+  middle.className = "flex-1 px-2 py-5" ;
   middle.id = "task-list-container";
   const bottom = document.createElement("div");
   bottom.className = "flex-none flex";
