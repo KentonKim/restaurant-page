@@ -5,7 +5,7 @@ export default class TaskLRUCache {
   constructor() {
     this.head = new TaskNode();
     this.end = new TaskNode();
-    this._hash = {};
+    this._weakMap = new WeakMap();
     this.head.nextCreated = this.end;
     this.head.nextModified = this.end;
     this.end.previousCreated = this.head;
@@ -13,9 +13,9 @@ export default class TaskLRUCache {
   }
 
   // Method to add
-  insertNode(key,value) {
+  insertNode(element, key, value) {
     const newNode = new TaskNode(key, value);
-    this._hash[key] = newNode;
+    this._weakMap.set(element, newNode);
     newNode.nextCreated = this.head.nextCreated;
     newNode.nextModified = this.head.nextModified;
     newNode.previousCreated = this.head;
@@ -27,30 +27,34 @@ export default class TaskLRUCache {
   }
 
   // Method to delete specific
-  removeNode(key) {
-    if (!(key in this._hash)) {
-      throw new Error('Key is not in Task List');
+  removeNode(element) {
+    if (!(element in this._weakMap)) {
+      throw new Error('Element is not in Task List');
     }
-    const node = this._hash[key];
+    const node = this._weakMap.get(element);
     node.previousCreated.nextCreated = node.nextCreated;
     node.previousModified.nextModified = node.nextModified;
     node.nextCreated.previousCreated = node.previousCreated;
     node.nextModified.previousModified = node.previousModified;
-    delete this._hash[key];
+    this._weakMap.delete(element);
   }
 
   // Method to update last modified
-  updateNode(key) { 
-    if (!(key in this._hash)) {
-      throw new Error('Key is not in Task List');
+  updateNode(element) { 
+    if (!(this._weakMap.has(element))) {
+      throw new Error('Element is not in Task List');
     }
-    const node = this._hash[key];
+    const node = this._weakMap.get(element);
     node.updateModified();
+    if (this.head.nextModified === node) {
+      return true;
+    }
     node.previousModified.nextModified = node.nextModified;
     node.nextModified.previousModified = node.previousModified;
     node.previousModified = this.head;
     node.nextModified = this.head.nextModified;
     this.head.nextModified.previousModified = node;
     this.head.nextModified = node;
+    return false;
   }
 }

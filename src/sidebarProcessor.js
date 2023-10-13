@@ -5,35 +5,39 @@ export default class SidebarProcessor {
         this.todoList = todoList;
         this.parentDiv = parentDiv;
         this.sidebarDomModule = sidebarDomModule;
-        this._titleToElement = {};
+        // this._titleToElement = {};
         this.onClickFxn = (event) => {
-            this.update(event.target.textContent);
+            this.update(event.target);
         };
     }
 
     add(title, value) {
-        this._titleToElement[title] = this.sidebarDomModule.addTask(this.parentDiv, title, this.onClickFxn);
-        this.todoList.insertNode(title, value);
+        const element = this.sidebarDomModule.addTask(this.parentDiv, title, this.onClickFxn);
+        this.todoList.insertNode(element, title, value);
     };
 
-    select(title) {
-        this.sidebarDomModule.selectTask(this.currentSelectedTask, this._titleToElement[title]);
-        this.currentSelectedTask = this._titleToElement[title];
+    select(element) {
+        this.sidebarDomModule.selectTask(this.currentSelectedTask, element);
+        this.currentSelectedTask = element;
         // TODO move to separate method
-        this.todoList.updateNode(title)
+        this.todoList.updateNode(element)
     };
 
-    remove(title) {
-        this.sidebarDomModule.removeTask(this._titleToElement[title]);
-        delete this._titleToElement[title];
-        this.todoList.removeNode(title)
+    remove(element) {
+        if (element === this.currentSelectedTask) {
+            this.currentSelectedTask = null;
+        };
+
+        this.sidebarDomModule.removeTask(element);
+        this.todoList.removeNode(element)
     };
 
-    update(title) {
-        // DOM actions
-        this._titleToElement[title].remove();
-        this._titleToElement[title] = this.sidebarDomModule.addTask(this.parentDiv, title, this.onClickFxn)
+    update(element) {
         // Cache actions
-        this.todoList.updateNode(title)
+        const isFirst = this.todoList.updateNode(element);
+        if (!isFirst) {
+            // DOM actions
+            this.parentDiv.insertBefore(element, this.parentDiv.firstChild);
+        }
     }
 };

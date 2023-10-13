@@ -46,4 +46,3 @@ addTaskButton.onclick = () => {
     todoText.clearText(addTaskInputId)
   }
 };
-
