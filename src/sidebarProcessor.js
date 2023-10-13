@@ -6,13 +6,14 @@ export default class SidebarProcessor {
         this.parentDiv = parentDiv;
         this.sidebarDomModule = sidebarDomModule;
         // this._titleToElement = {};
-        this.onClickFxn = (event) => {
-            this.update(event.target);
-        };
+        this.onClickTask = (event) => this.select(event.target.parentElement);
+        this.onClickDelete = (event) => {
+            console.log(event.target.parentElement)
+            this.remove(event.target.parentElement)};
     }
 
     add(title, value) {
-        const element = this.sidebarDomModule.addTask(this.parentDiv, title, this.onClickFxn);
+        const element = this.sidebarDomModule.addTask(this.parentDiv, title, this.onClickTask, this.onClickDelete);
         this.todoList.insertNode(element, title, value);
     };
 
@@ -27,7 +28,6 @@ export default class SidebarProcessor {
         if (element === this.currentSelectedTask) {
             this.currentSelectedTask = null;
         };
-
         this.sidebarDomModule.removeTask(element);
         this.todoList.removeNode(element)
     };

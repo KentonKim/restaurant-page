@@ -1,4 +1,4 @@
-import "./style.css";
+import "./css/style.css";
 import makeSidebar from "./makesidebar";
 import makeMain from "./makemain";
 import SidebarProcessor from "./sidebarProcessor";

@@ -28,7 +28,7 @@ export default class TaskLRUCache {
 
   // Method to delete specific
   removeNode(element) {
-    if (!(element in this._weakMap)) {
+    if (!(this._weakMap.has(element))) {
       throw new Error('Element is not in Task List');
     }
     const node = this._weakMap.get(element);

@@ -9,6 +9,7 @@
   background-color: antiquewhite;
   --scrollbar: #d6dee1;
   --scrollbar-hover: #a8bbbf;
+  --selected-task: blue;
 }
 
 :root,
@@ -46,6 +47,12 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--scrollbar-hover);
 }
+
+.selected-task {
+  background-color: var(--selected-task);
+}
+
+
 
 /* Animation for adding task to sidebar  */
 #task-list-container > .task-div {
