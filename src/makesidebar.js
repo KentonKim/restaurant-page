@@ -7,7 +7,7 @@ const makeSidebar = (parentDiv) => {
   top.className = "flex-none flex";
 
   const middle = document.createElement("div");
-  middle.className = "flex-1 py-5 pl-2 pr-2 overflow-y-auto" ;
+  middle.className = "flex-1 py-5 pl-2 pr-2 overflow-auto" ;
   middle.id = "task-list-container";
 
   const bottom = document.createElement("div");

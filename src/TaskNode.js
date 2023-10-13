@@ -9,4 +9,8 @@ export default class TaskNode {
     this.previousCreated = null;
     this.previousModified = null;
   }
+
+  updateModified() {
+    this.dateLastModified = new Date();
+  }
 }

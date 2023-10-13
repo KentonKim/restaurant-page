@@ -45,6 +45,7 @@ export default class TaskLRUCache {
       throw new Error('Key is not in Task List');
     }
     const node = this._hash[key];
+    node.updateModified();
     node.previousModified.nextModified = node.nextModified;
     node.nextModified.previousModified = node.previousModified;
     node.previousModified = this.head;

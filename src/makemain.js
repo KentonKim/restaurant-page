@@ -26,4 +26,5 @@ const makeMain = (parentDiv) => {
   main.appendChild(newTaskForm)
   parentDiv.appendChild(main);
 };
+
 export default makeMain;

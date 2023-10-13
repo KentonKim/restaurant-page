@@ -1,18 +1,10 @@
-export const addTask = (parentDiv, title) => {
+export const addTask = (parentDiv, title, onClickFxn) => {
     const element = document.createElement('div');
     element.textContent = title;
     element.className = 'overflow-hidden text-ellipsis w-full h-20 p-5 flex items-center cursor-pointer task-div'
-    // const editButton = document.createElement('button')
-    // editButton.textContent = 'tmp edit'
-    // const trashButton = document.createElement('button')
-    // trashButton.textContent = 'tmp trash'
-    // const editImg = document.createElement('img')
-    // const trashImg = document.createElement('img')
-    // trashButton.appendChild(trashImg)
-    // editButton.appendChild(editImg)
-    // element.appendChild(trashButton)
-    // element.appendChild(editButton)
+    element.addEventListener('click', onClickFxn);
     parentDiv.prepend(element);
+
     return element;
 };
 

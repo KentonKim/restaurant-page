@@ -4,13 +4,15 @@ export default class SidebarProcessor {
         this.currentSelectedTask = null;
         this.todoList = todoList;
         this.parentDiv = parentDiv;
-        this.sidebarDomModule = sidebarDomModule
-        this._titleToElement = {}
+        this.sidebarDomModule = sidebarDomModule;
+        this._titleToElement = {};
+        this.onClickFxn = (event) => {
+            this.update(event.target.textContent);
+        };
     }
 
     add(title, value) {
-        const element = this.sidebarDomModule.addTask(this.parentDiv, title);
-        this._titleToElement[title] = element;
+        this._titleToElement[title] = this.sidebarDomModule.addTask(this.parentDiv, title, this.onClickFxn);
         this.todoList.insertNode(title, value);
     };
 
@@ -26,4 +28,12 @@ export default class SidebarProcessor {
         delete this._titleToElement[title];
         this.todoList.removeNode(title)
     };
+
+    update(title) {
+        // DOM actions
+        this._titleToElement[title].remove();
+        this._titleToElement[title] = this.sidebarDomModule.addTask(this.parentDiv, title, this.onClickFxn)
+        // Cache actions
+        this.todoList.updateNode(title)
+    }
 };
