@@ -1,10 +1,21 @@
-const makeMain = (parentDiv) => {
+export const initializeMain = (parentDiv) => {
   const main = document.createElement("div");
   main.id = "main-div";
-  main.className = "ml-96 h-full flex justify-center items-center transition-all";
+  main.className = "p-3 ml-96 h-full flex justify-center items-center transition-all";
+  const showSidebarButton = document.createElement("button")
+  showSidebarButton.textContent = "Max";
+  showSidebarButton.id = "show-sidebar-button";
+  showSidebarButton.className = "absolute top-3 left-3 w-20 h-20 hidden opacity-0 transition-opacity ease-in";
+
+  main.appendChild(showSidebarButton);
+  parentDiv.appendChild(main);
+  return main;
+};
+
+export const addForm = (parentDiv) => {
   const newTaskForm = document.createElement('form')
   newTaskForm.id = "new-Task-Form"
-  newTaskForm.className = 'flex w-200' 
+  newTaskForm.className = 'flex w-200 rounded-2xl' 
   const newTaskInput = document.createElement('input')
   newTaskInput.placeholder = "Type task here..."
   newTaskInput.id = "new-Task-Input"
@@ -15,16 +26,10 @@ const makeMain = (parentDiv) => {
   newTaskButton.textContent = 'Submit'
   newTaskButton.id = 'new-Task-Button'
   newTaskButton.className = 'w-20 h-20'
-  const showSidebarButton = document.createElement("button")
-  showSidebarButton.textContent = "Max";
-  showSidebarButton.id = "show-sidebar-button";
-  showSidebarButton.className = "absolute top-0 left-0 w-20 h-20 hidden opacity-0 transition-opacity ease-in";
 
   newTaskForm.appendChild(newTaskInput)
   newTaskForm.appendChild(newTaskButton)
-  main.appendChild(showSidebarButton);
-  main.appendChild(newTaskForm)
-  parentDiv.appendChild(main);
+  parentDiv.appendChild(newTaskForm)
+  return newTaskForm;
 };
 
-export default makeMain;

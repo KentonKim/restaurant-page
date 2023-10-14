@@ -1,25 +1,27 @@
 import "./css/style.css";
-import makeSidebar from "./makesidebar";
-import makeMain from "./makemain";
+import sidebarDom from "./sidebarDOM";
+import * as mainDom from "./mainDOM";
 import SidebarProcessor from "./sidebarProcessor";
-import * as sidebarDomModule from "./sidebarDomModule";
+import * as sidebarTaskDom from "./sidebarTaskDOM";
 import TaskLRUCache from "./TaskLRUCache";
 import * as todoText from "./getTodoTitle";
 
-makeSidebar(document.body);
-makeMain(document.body);
+
+// Initialize Sidebar
+sidebarDom(document.body);
+const mainDiv = mainDom.initializeMain(document.body);
+mainDom.addForm(mainDiv);
 
 const showSidebarButton = document.getElementById("show-sidebar-button");
 const hideSidebarButton = document.getElementById("hide-sidebar-button");
 const sidebar = document.getElementById("sidebar-div");
-const mainDiv = document.getElementById("main-div");
 const addTaskInputId = 'new-Task-Input';
 const addTaskButtonId = 'new-Task-Button';
 const addTaskButton = document.getElementById(addTaskButtonId);
 
 const taskListContainer = document.getElementById('task-list-container');
 const taskLRUCache = new TaskLRUCache()
-const sidebarProcessor = new SidebarProcessor(taskLRUCache, taskListContainer, sidebarDomModule);
+const sidebarProcessor = new SidebarProcessor(taskLRUCache, taskListContainer, sidebarTaskDom);
 
 showSidebarButton.onclick = () => {
   sidebar.classList.add("w-96");

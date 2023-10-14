@@ -1,6 +1,6 @@
 export const addTask = (parentDiv, title, onClickTask, onClickDelete) => {
     const element = document.createElement('div');
-    element.className = 'select-none overflow-hidden text-ellipsis w-full h-20 flex items-center cursor-pointer task-div relative'
+    element.className = 'rounded-2xl select-none overflow-hidden text-ellipsis w-full h-20 flex items-center cursor-pointer task-div relative'
     const elementTextDiv = document.createElement('div')
     elementTextDiv.className = 'transition-width h-full p-5 w-full z-10'
     elementTextDiv.textContent = title;
@@ -30,7 +30,6 @@ const toggleShowDelete = (div) => {
     }
     div.classList.remove('w-full') 
     div.classList.add('w-3/4') 
-
 }
 
 export const selectTask = (oldDiv, newDiv) => {

@@ -1,21 +1,21 @@
 const makeSidebar = (parentDiv) => {
   const sidebar = document.createElement("div");
   sidebar.id = "sidebar-div";
-  sidebar.className = "fixed top-0 left-0 z-10 overflow-x-hidden transition-width ease w-96 h-full flex flex-col";
+  sidebar.className = "fixed top-0 left-0 z-10 overflow-x-hidden transition-width ease h-full flex flex-col";
 
   const top = document.createElement("div");
-  top.className = "flex-none flex";
+  top.className = "p-3 flex-none flex gap-3";
 
   const middle = document.createElement("div");
   middle.className = "flex-1 py-5 pl-2 pr-2 overflow-auto" ;
   middle.id = "task-list-container";
 
   const bottom = document.createElement("div");
-  bottom.className = "flex-none flex";
+  bottom.className = "flex-none flex p-3";
 
   const newTodobutton = document.createElement("button");
   newTodobutton.textContent = "New Todo";
-  newTodobutton.className = "flex-1 text-red h-20";
+  newTodobutton.className = "flex-1 text-red h-20 w-64";
 
   const hideSidebarButton = document.createElement("button");
   hideSidebarButton.textContent = "Min";
