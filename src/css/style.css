@@ -52,7 +52,9 @@ body {
   background-color: var(--selected-task);
 }
 
-
+textarea:focus, input:focus{
+  outline: none;
+}
 
 /* Animation for adding task to sidebar  */
 #task-list-container > .task-div {
