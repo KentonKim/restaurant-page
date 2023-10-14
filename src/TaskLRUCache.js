@@ -5,7 +5,8 @@ export default class TaskLRUCache {
   constructor() {
     this.head = new TaskNode();
     this.end = new TaskNode();
-    this._weakMap = new WeakMap();
+    this._weakMap = new WeakMap(); // Key:value = Element:Node
+    this._reverseWeakMap = new WeakMap(); // Key:value = Node:Element
     this.head.nextCreated = this.end;
     this.head.nextModified = this.end;
     this.end.previousCreated = this.head;
@@ -16,6 +17,7 @@ export default class TaskLRUCache {
   insertNode(element, key, value) {
     const newNode = new TaskNode(key, value);
     this._weakMap.set(element, newNode);
+    this._reverseWeakMap.set(newNode, element);
     newNode.nextCreated = this.head.nextCreated;
     newNode.nextModified = this.head.nextModified;
     newNode.previousCreated = this.head;
@@ -37,6 +39,7 @@ export default class TaskLRUCache {
     node.nextCreated.previousCreated = node.previousCreated;
     node.nextModified.previousModified = node.previousModified;
     this._weakMap.delete(element);
+    this._reverseWeakMap.delete(node);
   }
 
   // Method to update last modified
