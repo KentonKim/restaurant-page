@@ -7,9 +7,7 @@ export default class SidebarProcessor {
         this.sidebarDomModule = sidebarDomModule;
         // this._titleToElement = {};
         this.onClickTask = (event) => this.select(event.target.parentElement);
-        this.onClickDelete = (event) => {
-            console.log(event.target.parentElement)
-            this.remove(event.target.parentElement)};
+        this.onClickDelete = (event) => this.remove(event.target.parentElement);
     }
 
     add(title, value) {

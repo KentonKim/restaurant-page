@@ -9,7 +9,7 @@
   background-color: antiquewhite;
   --scrollbar: #d6dee1;
   --scrollbar-hover: #a8bbbf;
-  --selected-task: blue;
+  --selected-task: brown;
 }
 
 :root,
