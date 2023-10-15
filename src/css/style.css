@@ -5,8 +5,7 @@
 @import "./skeleton.css";
 
 * {
-  border: 1px solid red;
-  background-color: antiquewhite;
+  /* border: 1px solid red; */
   --scrollbar: #d6dee1;
   --scrollbar-hover: #a8bbbf;
   --selected-task: brown;
@@ -15,6 +14,96 @@
 :root,
 body {
   height: 100%;
+}
+
+@layer components {
+  * {
+    @apply text-moon-raker-100
+  }
+
+  .sidebar-button{
+    @apply text-white border-moon-raker-900;
+  }
+  .sidebar-button:hover {
+    @apply bg-moon-raker-900 text-white border-none;
+  }
+  .sidebar-button:active {
+    @apply bg-moon-raker-800 text-white border-none;
+  }
+  .sidebar-button:focus {
+    @apply border-moon-raker-900 text-white;
+  }
+
+  .button{
+    @apply text-white border-none;
+  }
+  .button:hover {
+    @apply bg-moon-raker-800 text-white border-none;
+  }
+  .button:active {
+    @apply bg-moon-raker-700 text-white border-none;
+  }
+
+  #show-sidebar-button {
+    @apply absolute top-3 left-3 w-20 h-20
+    flex justify-center items-center 
+    transition-opacity ease-in;
+  }
+
+  #sidebar-div {
+    @apply fixed top-0 left-0 z-10 h-full 
+    overflow-x-hidden  
+    /* border-l-moon-raker-700 */
+    flex flex-col
+    transition-width
+    bg-moon-raker-950;
+  }
+
+  #sidebar-bottom {
+    @apply p-3 ml-3 mr-3 
+    flex-none flex
+    border-t border-moon-raker-700
+  }
+
+  #main-div {
+    @apply p-3 h-full
+    flex justify-center items-center
+    transition-all
+    bg-moon-raker-900;
+  }
+
+  .task-div {
+    @apply w-full h-20 relative
+    rounded-2xl select-none 
+    border-none
+    overflow-clip
+    flex items-center 
+    bg-moon-raker-950
+    cursor-pointer;
+  }
+  
+  .task-div-text {
+    @apply h-full p-5 w-full z-10
+    bg-moon-raker-950
+    transition-width
+    text-ellipsis overflow-clip;
+  }
+
+  .task-div-text:hover:not(.selected-task) {
+    @apply bg-moon-raker-900;
+  }
+
+  .selected-task {
+    @apply bg-moon-raker-800;
+  }
+
+  .task-div-delete {
+    @apply absolute right-0 h-full w-1/4 
+    bg-moon-raker-400
+    flex items-center justify-center
+   border-moon-raker-950
+    rounded-r-2xl border-r
+  }
 }
 
 #task-list-container {
@@ -48,9 +137,7 @@ body {
   background-color: var(--scrollbar-hover);
 }
 
-.selected-task {
-  background-color: var(--selected-task);
-}
+
 
 textarea:focus, input:focus{
   outline: none;

@@ -9,7 +9,7 @@ Styling
 - make button class
 - decorate sidebar
 - decorate form
-- decorate mmain
+- decorate main
 
 Change view button
 - order by creation / modification

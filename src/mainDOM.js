@@ -1,11 +1,12 @@
 export const initializeMain = (parentDiv) => {
   const main = document.createElement("div");
   main.id = "main-div";
-  main.className = "p-3 ml-96 h-full flex justify-center items-center transition-all";
+  main.className = 'ml-96';
+
   const showSidebarButton = document.createElement("button")
   showSidebarButton.textContent = "Max";
   showSidebarButton.id = "show-sidebar-button";
-  showSidebarButton.className = "absolute top-3 left-3 w-20 h-20 hidden opacity-0 transition-opacity ease-in";
+  showSidebarButton.className = "button";
 
   main.appendChild(showSidebarButton);
   parentDiv.appendChild(main);
