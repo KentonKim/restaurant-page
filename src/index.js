@@ -5,16 +5,15 @@ import SidebarProcessor from "./sidebarProcessor";
 import * as sidebarTaskDom from "./sidebarTaskDOM";
 import TaskLRUCache from "./TaskLRUCache";
 import * as todoText from "./getTodoTitle";
-
+import getMessage from "./chatGPT";
 
 // Initialize Sidebar
-sidebarDom(document.body);
+const sidebar = sidebarDom(document.body);
 const mainDiv = mainDom.initializeMain(document.body);
 mainDom.addForm(mainDiv);
 
 const showSidebarButton = document.getElementById("show-sidebar-button");
 const hideSidebarButton = document.getElementById("hide-sidebar-button");
-const sidebar = document.getElementById("sidebar-div");
 const addTaskInputId = 'new-Task-Input';
 const addTaskButtonId = 'new-Task-Button';
 const addTaskButton = document.getElementById(addTaskButtonId);
@@ -44,6 +43,7 @@ addTaskButton.onclick = () => {
   event.preventDefault();
   if (!todoText.isEmptyText(addTaskInputId)) {
     const titleTask = todoText.getText(addTaskInputId);
+    getMessage(titleTask);
     sidebarProcessor.add(titleTask, null)
     todoText.clearText(addTaskInputId)
   }

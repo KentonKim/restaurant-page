@@ -41,5 +41,6 @@ const makeSidebar = (parentDiv) => {
   sidebar.appendChild(bottom);
 
   parentDiv.appendChild(sidebar);
+  return sidebar;
 };
 export default makeSidebar;
